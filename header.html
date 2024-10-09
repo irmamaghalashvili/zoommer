@@ -1,0 +1,107 @@
+<header>
+  <!-- ზუმერის მთლიანი გვერდის სტრუქტურა -->
+
+  <!-- მთლიან ნავიგაციას დავარქვი"nav__container"
+და  გავყავი 2 ნაწილად top და bottom ნაწილებად -->
+  <nav class="nav__container">
+    <!-- ნავიგაციის ზედა ანუ top ნაწილი -->
+    <div class="nav__container-top">
+      <div class="nav__top-contact">
+        <!-- საკონტაქტო ნომერი -->
+        <span class="nav__top-phone"></span>
+      </div>
+      <!-- ტოპიქები რაც არის პოლიტიკა განვადება და ა.შ. მაგათი ლინკები -->
+      <div class="nav__top-links">
+        <a href="#" class="nav__top-link"></a>
+        <!-- ასე რომ გავწეროთ -->
+      </div>
+    </div>
+
+    <!-- ნავიგაციის ქვედა ანუ bottom ნაწილი -->
+    <div class="header__second-line">
+      <div class="nav__container-bottom flex">
+        <div class="nav__container-bottom-div flex">
+          <!-- ზუმერის ლოგო -->
+          <div class="nav__bottom-logo">
+            <a href="index.html"
+              ><img src="/assets/main-logo.svg" alt="main logo"
+            /></a>
+          </div>
+          <!-- ზუმერის ლოგოდან 100პხ დაშორებით დანარჩენი ინფოს კონტეინერი -->
+          <div class="nav__bottom-mainPart flex">
+            <div class="bottom__mainPart-left flex">
+              <!-- კატეგორიის ნარინჯისფერი ღილაკი -->
+              <a href="all-category.html">
+                <div class="nav__bottom-category-button flex">
+                  <img src="/assets/dots.svg" alt="category icon" />
+                  <h4 class="category__btn-name">ნავიგაცია</h4>
+                </div>
+              </a>
+              <!-- სერჩი-->
+              <div class="bottom__nav-search">
+                <div class="nav__search">
+                  <img src="/assets/main-search.svg" alt="category icon" />
+                  <input
+                    type="text"
+                    class="nav__search-input"
+                    placeholder="ძიება"
+                    value
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- კალათის, შესვლის და ენის ღილაკები -->
+            <div class="bottom__mainPart-right flex">
+              <div class="header__Cart">
+                <div class="header__Cart-container flex">
+                  <img src="/assets/header-cart.svg" alt="cart icon" />
+                  <div class="header__Cart-name">კალათა</div>
+                </div>
+              </div>
+
+              <div class="header__log-in">
+                <div class="header__log-in-container flex">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    alt=""
+                  >
+                    <path
+                      stroke="#000"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M12.12 12.78a1 1 0 0 0-.24 0 3.27 3.27 0 0 1-3.16-3.27c0-1.81 1.46-3.28 3.28-3.28a3.276 3.276 0 0 1 .12 6.55M18.74 19.38A9.93 9.93 0 0 1 12 22c-2.6 0-4.96-.99-6.74-2.62.1-.94.7-1.86 1.77-2.58 2.74-1.82 7.22-1.82 9.94 0 1.07.72 1.67 1.64 1.77 2.58"
+                    ></path>
+                    <path
+                      stroke="#000"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10"
+                    ></path>
+                  </svg>
+                  <div class="header__log-in-name">შესვლა</div>
+                </div>
+              </div>
+
+              <div class="header__lang-change">
+                <div class="lang-change__geo-flag">
+                  <img src="/assets/flag-geo.png" alt="geo flag img" />
+                </div>
+                <div class="header__lang-change-container mob">
+                  <a class="geo">GEO</a>
+                  <a class="eng">ENG</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
