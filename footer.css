@@ -1,7 +1,7 @@
 footer {
     background-color: var(--footer-bg-color);
     padding: 20px;
-    text-align: center; /* Adjust based on layout */
+    text-align: center; 
   }
   
   footer a {
@@ -11,7 +11,7 @@ footer {
   
   footer .social-icons {
     display: flex;
-    justify-content: center; /* Adjust based on layout */
+    justify-content: center;
   }
   
   footer .social-icons img {
