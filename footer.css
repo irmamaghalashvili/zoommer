@@ -1,0 +1,26 @@
+footer {
+    background-color: var(--footer-bg-color);
+    padding: 20px;
+    text-align: center; /* Adjust based on layout */
+  }
+  
+  footer a {
+    color: var(--light-black);
+    text-decoration: none;
+  }
+  
+  footer .social-icons {
+    display: flex;
+    justify-content: center; /* Adjust based on layout */
+  }
+  
+  footer .social-icons img {
+    width: 24px;
+    height: 24px;
+    margin: 0 5px;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+
