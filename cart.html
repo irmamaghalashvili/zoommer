@@ -1,19 +1,31 @@
-<div class="cart-content flex-column">
-  <div class="cart__content-top flex">
-    <h4>კალათა</h4>
-    <div class="cart__items flex">
-      <span class="items__quantities"></span>
-      <span class="items__quantities-name">პროდუქტი</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="cart.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="cart-content flex-column">
+    <div class="cart__content-top flex">
+      <h4>კალათა</h4>
+      <div class="cart__items flex">
+        <span class="items__quantities"></span>
+        <span class="items__quantities-name">პროდუქტი</span>
+      </div>
     </div>
+    <div class="cart__main-img flex">
+      <img src="./assets/emptybag.svg" alt="cart emptybag" />
+    </div>
+    <div class="cart__total-cost flex">
+      <span class="cart__total-cost-name">საერთო ჯამი</span>
+      <span class="cart__total-cost__gel flex"> <span> ₾</span></span>
+    </div>
+    <button class="cart__button flex">
+      <h4>კალათის გახსნა</h4>
+    </button>
   </div>
-  <div class="cart__main-img flex">
-    <img src="./assets/emptybag.svg" alt="cart emptybag" />
-  </div>
-  <div class="cart__total-cost flex">
-    <span class="cart__total-cost-name">საერთო ჯამი</span>
-    <span class="cart__total-cost__gel flex"> <span> ₾</span></span>
-  </div>
-  <button class="cart__button flex">
-    <h4>კალათის გახსნა</h4>
-  </button>
-</div>
+</body>
+</html>
+

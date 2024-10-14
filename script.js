@@ -1,16 +1,12 @@
 function loadHTML(filename, elementSelector) {
   fetch(filename)
-    .then((response) => response.text())
-    .then((data) => {
+    .then(response => response.text())
+    .then(data => {
       document.querySelector(elementSelector).innerHTML = data;
     })
-    .catch((error) => console.log("Error loading file:", error));
+    .catch(error => console.log('Error loading file:', error));
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadHTML("header.html", "header");
-  loadHTML("footer.html", "footer");
-});
 
 // ------ Salomes part -----
 
@@ -391,3 +387,24 @@ async function getDataFromZoommerApi() {
 }
 
 getDataFromZoommerApi().then();
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadHTML('header.html', 'header');
+  loadHTML('footer.html', 'footer');
+});
+document.querySelector('.cart-container').addEventListener('mouseover', function() {
+  const cartPopup = document.querySelector('.cart-popup');
+
+  if (!cartPopup.innerHTML.trim()) {
+ 
+    fetch('cart.html')
+      .then(response => response.text())
+      .then(data => {
+        cartPopup.innerHTML = data; 
+      })
+      .catch(error => console.error('Error loading cart.html:', error));
+  }
+});
+
