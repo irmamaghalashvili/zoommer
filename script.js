@@ -209,16 +209,29 @@ let swiperObject = {
       },
     },
   }),
+
+  swiper14: new Swiper(".mySwiper14", {
+    slidesPerView: 6,
+    direction: getDirection(),
+    navigation: {
+      // nextEl: ".swiper-button-next",
+      // prevEl: ".swiper-button-prev",
+    },
+    watchOverflow: true,
+    on: {
+      resize: function () {
+        this.changeDirection(getDirection());
+      },
+    },
+  }),
 };
 
 function getDirection() {
-  let windowWidth = window.innerWidth;
-  let direction = window.innerWidth <= 760 ? "vertical" : "horizontal";
-
-  return direction;
+  return window.innerWidth <= 760 ? "vertical" : "horizontal";
 }
 
-function itemHtmlGenerator(item) {
+function itemHtmlGenerator(item, sectionId) {
+  let itemHtml = "";
   const monthlyPrice = (item.price / 12).toFixed(2);
 
   let saleBadge = "";
@@ -252,9 +265,10 @@ function itemHtmlGenerator(item) {
     ${preSalePrice}  
   </div>`;
   }
-
-  let itemHtml = `<div class="swiper-slide">
+  let addToResView = `onclick="addToRecentlyViewed(${item.id}, ${sectionId})"`;
+  itemHtml += `<div class="swiper-slide" >
   <div id="product-${item.id}" class="mainCardbox">
+   <div class="imgAndPricePart" ${sectionId ? addToResView : ""}>
     <img class="slider--img" src="${item.imageUrl}" alt="${item.name}" />
     ${saleBadge}
     ${labelText}
@@ -265,6 +279,7 @@ function itemHtmlGenerator(item) {
         ${item.name}
       </a>
     </div>
+   </div>
     <div class="iconsBox">
       <div class="compiars">
         <img src="https://zoommer.ge/icons/compare-card.svg" alt="" />
@@ -281,6 +296,66 @@ function itemHtmlGenerator(item) {
   return itemHtml;
 }
 
+function addToRecentlyViewed(productId, sectionId) {
+  const section = zoomerApiData.section.find(
+    (sectionItem) => sectionItem.id === sectionId
+  );
+  if (!section) return;
+
+  const item = section.products.find((item) => item.id === productId);
+
+  if (!item) return;
+
+  /** get recently viewed list from localstorage */
+  let lastviewedArray = [];
+  let lastview = getLastViewedItems();
+  if (lastview) {
+    lastviewedArray = lastview;
+    /** check if current item exists in existing viewed list if exists return */
+    if (lastviewedArray.find((lastviewItemId) => lastviewItemId === productId))
+      return;
+    /** add current item in existing viewed list if not exists */
+    if (lastviewedArray.length === 6) {
+      lastviewedArray.splice(0, 1);
+      swiperObject.swiper14.removeSlide(0);
+    }
+    lastviewedArray.push(item.id);
+    localStorage.setItem("recentlyViewed", JSON.stringify(lastviewedArray));
+
+    swiperObject.swiper14.appendSlide(itemHtmlGenerator(item));
+  } else {
+    /** create recently viewed list if not exists */
+    lastviewedArray.push(item.id);
+    localStorage.setItem("recentlyViewed", JSON.stringify(lastviewedArray));
+    swiperObject.swiper14.appendSlide(itemHtmlGenerator(item));
+  }
+}
+
+//** add last viewed data to swiper */
+function showRecentlyVieweds() {
+  swiperObject.swiper14.removeAllSlides();
+  const lastViewed = getLastViewedItems();
+  if (lastViewed) {
+    for (const section of zoomerApiData.section) {
+      if (section.products) {
+        for (const pitem of section.products) {
+          if (
+            lastViewed.find((lastviewItemId) => lastviewItemId === pitem.id)
+          ) {
+            swiperObject.swiper14.appendSlide(itemHtmlGenerator(pitem));
+          }
+        }
+      }
+    }
+  }
+}
+
+function getLastViewedItems() {
+  let lastview = localStorage.getItem("recentlyViewed");
+  if (lastview) return JSON.parse(lastview);
+  return null;
+}
+
 function brandsHtmlGenerator() {}
 
 async function getDataFromZoommerApi() {
@@ -294,7 +369,7 @@ async function getDataFromZoommerApi() {
       if (section.products) {
         for (let item of section.products) {
           swiperObject["swiper" + itemIndex].appendSlide(
-            itemHtmlGenerator(item)
+            itemHtmlGenerator(item, section.id)
           );
         }
         itemIndex++;
@@ -308,6 +383,8 @@ async function getDataFromZoommerApi() {
         itemIndex++;
       }
     }
+    //call showRecentlyVieweds function
+    showRecentlyVieweds();
   } catch (e) {
     console.log(e);
   }
