@@ -234,3 +234,13 @@ body {
 .salePrice {
   color: var(--corp-color);
 }
+
+@media screen and (max-width: 900px) {
+  .swiper-slide {
+    width: 130px !important;
+    height: 100%;
+  }
+  .swiper-wrapper {
+    gap: 12px;
+  }
+}

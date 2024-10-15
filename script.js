@@ -1,12 +1,11 @@
 function loadHTML(filename, elementSelector) {
   fetch(filename)
-    .then(response => response.text())
-    .then(data => {
+    .then((response) => response.text())
+    .then((data) => {
       document.querySelector(elementSelector).innerHTML = data;
     })
-    .catch(error => console.log('Error loading file:', error));
+    .catch((error) => console.log("Error loading file:", error));
 }
-
 
 // ------ Salomes part -----
 
@@ -223,7 +222,7 @@ let swiperObject = {
 };
 
 function getDirection() {
-  return window.innerWidth <= 760 ? "vertical" : "horizontal";
+  return (window.innerWidth = "horizontal");
 }
 
 function itemHtmlGenerator(item, sectionId) {
@@ -244,7 +243,7 @@ function itemHtmlGenerator(item, sectionId) {
   if (item.iconUrl) {
     iconsGift = `<div class="giftIcon">
                 <img class="giftIcoImg" src="${item.iconUrl}" alt="Gift Icon" />
-              </div>`;
+                 </div>`;
   }
 
   let labelText = "";
@@ -262,6 +261,7 @@ function itemHtmlGenerator(item, sectionId) {
   </div>`;
   }
   let addToResView = `onclick="addToRecentlyViewed(${item.id}, ${sectionId})"`;
+
   itemHtml += `<div class="swiper-slide" >
   <div id="product-${item.id}" class="mainCardbox">
    <div class="imgAndPricePart" ${sectionId ? addToResView : ""}>
@@ -352,8 +352,6 @@ function getLastViewedItems() {
   return null;
 }
 
-function brandsHtmlGenerator() {}
-
 async function getDataFromZoommerApi() {
   try {
     const response = await fetch("data.json");
@@ -388,23 +386,21 @@ async function getDataFromZoommerApi() {
 
 getDataFromZoommerApi().then();
 
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  loadHTML('header.html', 'header');
-  loadHTML('footer.html', 'footer');
+document.addEventListener("DOMContentLoaded", function () {
+  loadHTML("header.html", "header");
+  loadHTML("footer.html", "footer");
 });
-document.querySelector('.cart-container').addEventListener('mouseover', function() {
-  const cartPopup = document.querySelector('.cart-popup');
+document
+  .querySelector(".cart-container")
+  .addEventListener("mouseover", function () {
+    const cartPopup = document.querySelector(".cart-popup");
 
-  if (!cartPopup.innerHTML.trim()) {
- 
-    fetch('cart.html')
-      .then(response => response.text())
-      .then(data => {
-        cartPopup.innerHTML = data; 
-      })
-      .catch(error => console.error('Error loading cart.html:', error));
-  }
-});
-
+    if (!cartPopup.innerHTML.trim()) {
+      fetch("cart.html")
+        .then((response) => response.text())
+        .then((data) => {
+          cartPopup.innerHTML = data;
+        })
+        .catch((error) => console.error("Error loading cart.html:", error));
+    }
+  });
