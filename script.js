@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
+  // Load header and footer HTML
   loadHTML('header.html', 'header');
   loadHTML('footer.html', 'footer');
 
- 
+  // Cart popup on mouseover
   document.querySelector('.cart-container').addEventListener('mouseover', function() {
     const cartPopup = document.querySelector('.cart-popup');
-
 
     if (!cartPopup.innerHTML.trim()) {
       fetch('cart.html')
@@ -17,9 +17,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
+document.addEventListener("click", function() {
+  // Login pop-up functionality
+  const loginButton = document.getElementById('header__log-in');
+  const popUp = document.getElementById('log-in__pop-up-main-part');
+  const closeButton = document.querySelector('.log-in-popup-close'); 
+
+  // Show the pop-up when the login button is clicked
+  if (loginButton) {
+    loginButton.addEventListener('click', function() {
+      popUp.style.display = 'block'; // Show the pop-up
+    });
+  }
+
+  // Close the pop-up when the close button is clicked
+  if (closeButton) {
+    closeButton.addEventListener('click', function() {
+      popUp.style.display = 'none'; // Hide the pop-up
+    });
+  }
+});
 
 
 
+// Function to load HTML content
 function loadHTML(filename, elementSelector) {
   fetch(filename)
     .then(response => response.text())
@@ -29,23 +50,40 @@ function loadHTML(filename, elementSelector) {
     .catch(error => console.log('Error loading file:', error));
 }
 
-window.onscroll = function() {
+
+
+  // Header scroll functionality
   const headerTopPart = document.querySelector(".header__top-part");
   const headerSecondLine = document.getElementById("header__second-line");
 
-  
-  if (window.pageYOffset > 50) {
-    headerTopPart.style.display = "none"; 
-    headerSecondLine.classList.add("scrolled"); 
-  } else {
-    headerTopPart.style.display = "flex"; 
-    headerSecondLine.classList.remove("scrolled"); 
-  }
-};
+  window.onscroll = function() {
+    if (window.pageYOffset > 50) {
+      headerTopPart.style.display = "none"; 
+      headerSecondLine.classList.add("scrolled"); 
+    } else {
+      headerTopPart.style.display = "flex"; 
+      headerSecondLine.classList.remove("scrolled"); 
+    }
+  };
 
 
+// Function to load HTML content into a specified element
+function loadHTML(filename, elementSelector) {
+  fetch(filename)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.querySelector(elementSelector).innerHTML = data;
+    })
+    .catch(error => console.log('Error loading file:', error));
+}
 
-// ------ Salomes part -----
+
+// // ------ Salomes part -----
 
 let zoomerApiData = "";
 let swiperObject = {
