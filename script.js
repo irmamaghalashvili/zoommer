@@ -1,3 +1,25 @@
+document.addEventListener("DOMContentLoaded", function() {
+  loadHTML('header.html', 'header');
+  loadHTML('footer.html', 'footer');
+
+ 
+  document.querySelector('.cart-container').addEventListener('mouseover', function() {
+    const cartPopup = document.querySelector('.cart-popup');
+
+
+    if (!cartPopup.innerHTML.trim()) {
+      fetch('cart.html')
+        .then(response => response.text())
+        .then(data => {
+          cartPopup.innerHTML = data;
+        })
+        .catch(error => console.error('Error loading cart.html:', error));
+    }
+  });
+});
+
+
+
 function loadHTML(filename, elementSelector) {
   fetch(filename)
     .then(response => response.text())
@@ -6,6 +28,21 @@ function loadHTML(filename, elementSelector) {
     })
     .catch(error => console.log('Error loading file:', error));
 }
+
+window.onscroll = function() {
+  const headerTopPart = document.querySelector(".header__top-part");
+  const headerSecondLine = document.getElementById("header__second-line");
+
+  
+  if (window.pageYOffset > 50) {
+    headerTopPart.style.display = "none"; 
+    headerSecondLine.classList.add("scrolled"); 
+  } else {
+    headerTopPart.style.display = "flex"; 
+    headerSecondLine.classList.remove("scrolled"); 
+  }
+};
+
 
 
 // ------ Salomes part -----
@@ -387,24 +424,3 @@ async function getDataFromZoommerApi() {
 }
 
 getDataFromZoommerApi().then();
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  loadHTML('header.html', 'header');
-  loadHTML('footer.html', 'footer');
-});
-document.querySelector('.cart-container').addEventListener('mouseover', function() {
-  const cartPopup = document.querySelector('.cart-popup');
-
-  if (!cartPopup.innerHTML.trim()) {
- 
-    fetch('cart.html')
-      .then(response => response.text())
-      .then(data => {
-        cartPopup.innerHTML = data; 
-      })
-      .catch(error => console.error('Error loading cart.html:', error));
-  }
-});
-
