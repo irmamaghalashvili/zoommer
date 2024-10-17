@@ -1,12 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // Load header and footer HTML
   loadHTML('header.html', 'header');
   loadHTML('footer.html', 'footer');
-
-  // Cart popup on mouseover
+ 
   document.querySelector('.cart-container').addEventListener('mouseover', function() {
     const cartPopup = document.querySelector('.cart-popup');
-
     if (!cartPopup.innerHTML.trim()) {
       fetch('cart.html')
         .then(response => response.text())
@@ -17,6 +14,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
+
+    function loadHTML(filename, elementSelector) {
+      fetch(filename)
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector(elementSelector).innerHTML = data;
+        })
+        .catch(error => console.log('Error loading file:', error));
+    }
+    
+window.onscroll = function() {
+  const headerTopPart = document.querySelector(".header__top-part");
+  const headerSecondLine = document.getElementById("header__second-line");
+  
+  if (window.scrollY > 50) {
+    headerTopPart.style.display = "none"; 
+    headerSecondLine.classList.add("scrolled"); 
+  } else {
+    headerTopPart.style.display = "flex"; 
+    headerSecondLine.classList.remove("scrolled"); 
+  }
+};
+
+
 document.addEventListener("click", function() {
   // Login pop-up functionality
   const loginButton = document.getElementById('header__log-in');
@@ -37,51 +58,6 @@ document.addEventListener("click", function() {
     });
   }
 });
-
-
-
-// Function to load HTML content
-function loadHTML(zoomer, elementSelector) {
-  fetch(zoomer)
-    .then(response => response.text())
-    .then(data => {
-      document.querySelector(elementSelector).innerHTML = data;
-    })
-    .catch(error => console.log('Error loading file:', error));
-}
-
-
-
-  // Header scroll functionality
-  const headerTopPart = document.querySelector(".header__top-part");
-  const headerSecondLine = document.getElementById("header__second-line");
-
-  window.onscroll = function() {
-    if (window.pageYOffset > 50) {
-      headerTopPart.style.display = "none"; 
-      headerSecondLine.classList.add("scrolled"); 
-    } else {
-      headerTopPart.style.display = "flex"; 
-      headerSecondLine.classList.remove("scrolled"); 
-    }
-  };
-
-
-// Function to load HTML content into a specified element
-function loadHTML(filename, elementSelector) {
-  fetch(filename)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.text();
-    })
-    .then(data => {
-      document.querySelector(elementSelector).innerHTML = data;
-    })
-    .catch(error => console.log('Error loading file:', error));
-}
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
