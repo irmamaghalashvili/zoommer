@@ -75,6 +75,7 @@ body {
 }
 
 .log-in__pop-up-main-part {
+  display:none;
   position: relative;
   width: 440px;
   padding: 0px 20px;
