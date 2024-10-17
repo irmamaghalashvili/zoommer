@@ -31,7 +31,10 @@
     0,
     0,
     0.8
-  ); /*text color for the entire aside block and the entire footer*/
+  ); 
+  --all-category-text-color: rgb(10, 50, 81);/* bfont color for all-category page*/
+
+  /*text color for the entire aside block and the entire footer*/
   --compare-icon: #00579f80; /*compare button color*/
   --chat-icon-color: #fc9e00; /* bottom right chat icon color*/
   --chat-icon-background: #fcdca7; /* bottom right chat icon bg color*/
