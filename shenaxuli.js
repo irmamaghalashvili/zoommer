@@ -1,13 +1,125 @@
-function loadHTML(filename, elementSelector) {
-  fetch(filename)
-    .then((response) => response.text())
-    .then((data) => {
+document.addEventListener("DOMContentLoaded", function() {
+  // Load header and footer HTML
+  loadHTML('header.html', 'header');
+  loadHTML('footer.html', 'footer');
+
+  // Cart popup on mouseover
+  document.querySelector('.cart-container').addEventListener('mouseover', function() {
+    const cartPopup = document.querySelector('.cart-popup');
+
+    if (!cartPopup.innerHTML.trim()) {
+      fetch('cart.html')
+        .then(response => response.text())
+        .then(data => {
+          cartPopup.innerHTML = data;
+        })
+        .catch(error => console.error('Error loading cart.html:', error));
+    }
+  });
+});
+document.addEventListener("click", function() {
+  // Login pop-up functionality
+  const loginButton = document.getElementById('header__log-in');
+  const popUp = document.getElementById('log-in__pop-up-main-part');
+  const closeButton = document.querySelector('.log-in-popup-close'); 
+
+  // Show the pop-up when the login button is clicked
+  if (loginButton) {
+    loginButton.addEventListener('click', function() {
+      popUp.style.display = 'block'; // Show the pop-up
+    });
+  }
+
+  // Close the pop-up when the close button is clicked
+  if (closeButton) {
+    closeButton.addEventListener('click', function() {
+      popUp.style.display = 'none'; // Hide the pop-up
+    });
+  }
+});
+
+
+
+// Function to load HTML content
+function loadHTML(zoomer, elementSelector) {
+  fetch(zoomer)
+    .then(response => response.text())
+    .then(data => {
       document.querySelector(elementSelector).innerHTML = data;
     })
-    .catch((error) => console.log("Error loading file:", error));
+    .catch(error => console.log('Error loading file:', error));
 }
 
-// ------ Salomes part -----
+
+
+  // Header scroll functionality
+  const headerTopPart = document.querySelector(".header__top-part");
+  const headerSecondLine = document.getElementById("header__second-line");
+
+  window.onscroll = function() {
+    if (window.pageYOffset > 50) {
+      headerTopPart.style.display = "none"; 
+      headerSecondLine.classList.add("scrolled"); 
+    } else {
+      headerTopPart.style.display = "flex"; 
+      headerSecondLine.classList.remove("scrolled"); 
+    }
+  };
+
+
+// Function to load HTML content into a specified element
+function loadHTML(filename, elementSelector) {
+  fetch(filename)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.querySelector(elementSelector).innerHTML = data;
+    })
+    .catch(error => console.log('Error loading file:', error));
+}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const allCategorySection = document.querySelector('.all-category__section-columns');
+
+  // Fetch the JSON data from the file
+  fetch('all-category.json')
+      .then(response => response.json())
+      .then(categories => {
+          // Process and display the data
+          categories.forEach(category => {
+              const categoryDiv = document.createElement('div');
+              categoryDiv.classList.add('category-item');
+              
+              const title = document.createElement('h3');
+              title.textContent = category.name;
+              
+              const childList = document.createElement('ul');
+              category.childCategories.forEach(child => {
+                  const childItem = document.createElement('li');
+                  childItem.textContent = child.name;
+                  childList.appendChild(childItem);
+              });
+              
+              categoryDiv.appendChild(title);
+              categoryDiv.appendChild(childList);
+              allCategorySection.appendChild(categoryDiv);
+          });
+      })
+      .catch(error => {
+          console.error('Error fetching the categories:', error);
+      });
+
+
+    });
+
+
+// // // ------ Salomes part -----
 
 let zoomerApiData = "";
 let swiperObject = {
@@ -222,7 +334,7 @@ let swiperObject = {
 };
 
 function getDirection() {
-  return (window.innerWidth = "horizontal");
+  return window.innerWidth <= 760 ? "vertical" : "horizontal";
 }
 
 function itemHtmlGenerator(item, sectionId) {
@@ -243,7 +355,7 @@ function itemHtmlGenerator(item, sectionId) {
   if (item.iconUrl) {
     iconsGift = `<div class="giftIcon">
                 <img class="giftIcoImg" src="${item.iconUrl}" alt="Gift Icon" />
-                 </div>`;
+              </div>`;
   }
 
   let labelText = "";
@@ -261,7 +373,6 @@ function itemHtmlGenerator(item, sectionId) {
   </div>`;
   }
   let addToResView = `onclick="addToRecentlyViewed(${item.id}, ${sectionId})"`;
-
   itemHtml += `<div class="swiper-slide" >
   <div id="product-${item.id}" class="mainCardbox">
    <div class="imgAndPricePart" ${sectionId ? addToResView : ""}>
@@ -352,6 +463,8 @@ function getLastViewedItems() {
   return null;
 }
 
+function brandsHtmlGenerator() {}
+
 async function getDataFromZoommerApi() {
   try {
     const response = await fetch("data.json");
@@ -382,24 +495,7 @@ async function getDataFromZoommerApi() {
   } catch (e) {
     console.log(e);
   }
-}
+
+};
 getDataFromZoommerApi().then();
 
-document.addEventListener("DOMContentLoaded", function () {
-  loadHTML("header.html", "header");
-  loadHTML("footer.html", "footer");
-});
-document
-  .querySelector(".cart-container")
-  .addEventListener("mouseover", function () {
-    const cartPopup = document.querySelector(".cart-popup");
-
-    if (!cartPopup.innerHTML.trim()) {
-      fetch("cart.html")
-        .then((response) => response.text())
-        .then((data) => {
-          cartPopup.innerHTML = data;
-        })
-        .catch((error) => console.error("Error loading cart.html:", error));
-    }
-  });

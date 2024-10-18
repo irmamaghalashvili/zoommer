@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/shared.css" />
     <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/style.css"/>
+
     <title>Document</title>
   </head>
   <body>
-    <header>
+    <header id="header">
       <!-- ზუმერის მთლიანი გვერდის სტრუქტურა -->
 
       <!-- მთლიან ნავიგაციას დავარქვი"nav__container"
   და  გავყავი 2 ნაწილად top და bottom ნაწილებად -->
       <nav class="nav__container flex-column">
         <!-- ნავიგაციის ზედა ანუ top ნაწილი -->
-        
-          <div class="header">
-            <div class="header__top-part">
+
+        <div class="header">
+          <div class="header__top-part">
             <div class="top-header">
               <div class="header-phone">
                 <img src="./assets/assets_irma/header-phone.svg" alt="" />
@@ -38,7 +40,7 @@
           </div>
         </div>
         <!-- ნავიგაციის ქვედა ანუ bottom ნაწილი -->
-        <div class="header__second-line">
+        <div id="header__second-line" class="header__second-line">
           <div class="nav__container-bottom flex">
             <div class="nav__container-bottom-div flex">
               <!--  ბურგერ მენიუ -->
@@ -93,43 +95,39 @@
                   <div class="header__Cart cart-container">
                     <div class="header__Cart-container flex">
                       <img src="/assets/header-cart.svg" alt="cart icon" />
-                      <div class="header__Cart-name hide">კალათა</div>
+                      <div class="header__Cart-name hide">
+                        <a href="cart.html">კალათა</a>
+                      </div>
 
-                      <div class="cart-popup">
-                        <div class="cart-content flex-column">
-                          <div class="cart__content-top flex">
-                            <h4>კალათა</h4>
-                            <div class="cart__items flex">
-                              <span class="items__quantities">0</span>
-                              <span class="items__quantities-name"
-                                >პროდუქტი</span
-                              >
-                            </div>
+                      <div class="cart-popup flex flex-column">
+                        <div class="cart__content-top flex">
+                          <h4>კალათა</h4>
+                          <div class="cart__items flex">
+                            <h4 class="items__quantities">0</h4>
+                            <h4 class="items__quantities-name">პროდუქტი</h4>
                           </div>
-                          <div class="cart__main-img">
-                            <img
-                              src="./assets/emptybag.svg"
-                              alt="cart emptybag"
-                            />
-                          </div>
-                          <div class="cart__total-cost flex">
-                            <span class="cart__total-cost-name"
-                              >საერთო ჯამი</span
-                            >
-                            <span class="cart__total-cost__gel flex"
-                              >₾0.00</span
-                            >
-                          </div>
-                          <button class="cart__button flex">
-                            <h4>კალათის გახსნა</h4>
-                          </button>
                         </div>
+                        <div class="cart__main-img">
+                          <img
+                            src="./assets/emptybag.svg"
+                            alt="cart emptybag"
+                          />
+                        </div>
+
+                        <div class="cart__total-cost flex">
+                          <h4 class="cart__total-cost-name">ჯამური ფასი:</h4>
+                          <h4 class="cart__total-cost__gel flex">0 ₾</h4>
+                        </div>
+
+                        <button class="cart__button flex">
+                          <h4>კალათის გახსნა</h4>
+                        </button>
                       </div>
                     </div>
                   </div>
 
-                  <div class="header__log-in hide">
-                    <div class="header__log-in-container flex">
+                  <div class="header__log-in hide" id="header__log-in">
+                    <div class="header__log-in-container flex" id="header__log-in div">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -153,7 +151,7 @@
                           d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10"
                         ></path>
                       </svg>
-                      <div class="header__log-in-name">შესვლა</div>
+                      <div class="header__log-in-name" >შესვლა</div>
                     </div>
                   </div>
 
