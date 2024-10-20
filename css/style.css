@@ -4,11 +4,10 @@
 
 body {
   height: 100%;
-  font-family: "firago", sans-serif;
+  font-family: "firago", sans-serif, "FiraGO";
   font-size: var(--font-size-small);
   color: var(--black-text);
   background-color: var(--white-bachkround);
-  /* min-width: 320px; */
 }
 .scroll-bar div {
   opacity: 1;
@@ -75,7 +74,7 @@ body {
 }
 
 .log-in__pop-up-main-part {
-  display:none;
+  display: none;
   position: relative;
   width: 440px;
   padding: 0px 20px;
@@ -315,7 +314,7 @@ body {
 }
 
 .swiper {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .slidersMainBox {
   width: 100%;
@@ -352,6 +351,7 @@ body {
   color: var(--black-text);
   margin-bottom: 30px;
   margin-top: 30px;
+  font-family: "FiraGO", sans-serif;
 }
 .mainCardbox {
   position: relative;
@@ -383,7 +383,7 @@ body {
   position: absolute;
   bottom: 130px;
   left: 0px;
-  background-color: rgb(247, 144, 9);
+  background-color: var(--news-color);
   padding: 5px 8px;
   font-size: 9px;
   font-weight: 500;
@@ -461,7 +461,7 @@ body {
 }
 .addCart {
   position: relative;
-  background: rgba(236, 94, 42, 0.5);
+  background: var(--add-btn-color);
   border-radius: 4px;
   padding: 10px 14px;
   display: flex;
@@ -538,6 +538,10 @@ body {
   color: var(--corp-color);
 }
 
+.mySwiper14 {
+  margin-bottom: 60px;
+}
+
 @media screen and (max-width: 900px) {
   .swiper-slide {
     width: 130px !important;
@@ -548,9 +552,15 @@ body {
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1030px) {
   .swiper-button-next,
   .swiper-button-prev {
     display: none;
+  }
+
+  .mySwiper_header {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
   }
 }

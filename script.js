@@ -302,15 +302,12 @@ function addToRecentlyViewed(productId, sectionId) {
 
   if (!item) return;
 
-  /** get recently viewed list from localstorage */
   let lastviewedArray = [];
   let lastview = getLastViewedItems();
   if (lastview) {
     lastviewedArray = lastview;
-    /** check if current item exists in existing viewed list if exists return */
     if (lastviewedArray.find((lastviewItemId) => lastviewItemId === productId))
       return;
-    /** add current item in existing viewed list if not exists */
     if (lastviewedArray.length === 6) {
       lastviewedArray.splice(0, 1);
       swiperObject.swiper14.removeSlide(0);
@@ -320,14 +317,12 @@ function addToRecentlyViewed(productId, sectionId) {
 
     swiperObject.swiper14.appendSlide(itemHtmlGenerator(item));
   } else {
-    /** create recently viewed list if not exists */
     lastviewedArray.push(item.id);
     localStorage.setItem("recentlyViewed", JSON.stringify(lastviewedArray));
     swiperObject.swiper14.appendSlide(itemHtmlGenerator(item));
   }
 }
 
-//** add last viewed data to swiper */
 function showRecentlyVieweds() {
   swiperObject.swiper14.removeAllSlides();
   const lastViewed = getLastViewedItems();
@@ -359,7 +354,42 @@ async function getDataFromZoommerApi() {
 
     console.log(zoomerApiData);
     let itemIndex = 1;
+
     for (const section of zoomerApiData.section) {
+      if (section.title) {
+        const swiperContainer = document.querySelector(".mySwiper" + itemIndex);
+
+        if (
+          swiperContainer &&
+          !swiperContainer.querySelector(".mySwiper_header")
+        ) {
+          const newH1 = document.createElement("h1");
+          newH1.classList.add("mySwiper_header");
+          const textnode = document.createTextNode(section.title);
+          newH1.appendChild(textnode);
+          swiperContainer.insertBefore(newH1, swiperContainer.firstChild);
+        } else {
+          console.error("Swiper container not found for index: ", itemIndex);
+        }
+      }
+
+      const mySwiper14Container = document.querySelector(".mySwiper14");
+      if (
+        mySwiper14Container &&
+        !mySwiper14Container.querySelector(".mySwiper_header")
+      ) {
+        const newH1ForSwiper14 = document.createElement("h1");
+        newH1ForSwiper14.classList.add("mySwiper_header");
+        const textnode14 = document.createTextNode("ბოლოს ნანახი");
+        newH1ForSwiper14.appendChild(textnode14);
+        mySwiper14Container.insertBefore(
+          newH1ForSwiper14,
+          mySwiper14Container.firstChild
+        );
+      } else {
+        console.error("Swiper container mySwiper14 not found");
+      }
+
       if (section.products) {
         for (let item of section.products) {
           swiperObject["swiper" + itemIndex].appendSlide(
@@ -368,21 +398,21 @@ async function getDataFromZoommerApi() {
         }
         itemIndex++;
       }
+
       if (section.brands) {
         for (let item of section.brands) {
-          //TODO move this line to brandsHtmlGenerator() function
           let slideContent = `<div class="swiper-slide"><img src="${item.imageUrl}" class="brand--img" alt="Brand Image"></div>`;
           swiperObject["swiper" + itemIndex].appendSlide(slideContent);
         }
         itemIndex++;
       }
     }
-    //call showRecentlyVieweds function
     showRecentlyVieweds();
   } catch (e) {
     console.log(e);
   }
 }
+
 getDataFromZoommerApi().then();
 
 document.addEventListener("DOMContentLoaded", function () {
