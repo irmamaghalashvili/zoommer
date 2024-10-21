@@ -339,8 +339,16 @@ body {
   flex-direction: column;
 }
 
+.swiperSlide5 {
+  height: 80px;
+  align-items: center;
+}
 .swiper-wrapper {
   gap: 35px;
+}
+
+.swiper5button {
+  top: 64% !important;
 }
 
 .mySwiper_header {
