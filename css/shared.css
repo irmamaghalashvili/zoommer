@@ -16,7 +16,7 @@
 @font-face {
   font-family: "FiraGO";
   src: url("/css/fonts/FiraGO-Regular.otf") format("opentype");
-  font-weight: 600;
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -62,8 +62,8 @@ html {
   min-height: 100vh;
   padding: 0;
   margin: 0;
-  font-family: "Oxygen", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    sans-serif;
+  font-family: "FiraGO", "Oxygen", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", sans-serif;
 }
 
 /* ფლექსი როგორც კლასი.. გოგოებო რაც გინდათ რომ ფლექსი იყოს, მეორე კლასად მიუწერეთ flex სახელშივე */
