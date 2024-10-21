@@ -4,11 +4,10 @@
 
 body {
   height: 100%;
-  font-family: "FiraGO", sans-serif;
+  font-family: "firago", sans-serif;
   font-size: var(--font-size-small);
   color: var(--black-text);
   background-color: var(--white-bachkround);
-  /* min-width: 320px; */
 }
 .scroll-bar div {
   opacity: 1;
@@ -315,7 +314,7 @@ body {
 }
 
 .swiper {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .slidersMainBox {
   width: 100%;
@@ -340,8 +339,16 @@ body {
   flex-direction: column;
 }
 
+.swiperSlide5 {
+  height: 80px;
+  align-items: center;
+}
 .swiper-wrapper {
   gap: 35px;
+}
+
+.swiper5button {
+  top: 64% !important;
 }
 
 .mySwiper_header {
@@ -353,6 +360,7 @@ body {
   color: var(--black-text);
   margin-bottom: 30px;
   margin-top: 30px;
+  font-family: "FiraGO", sans-serif;
 }
 .mainCardbox {
   position: relative;
@@ -384,7 +392,7 @@ body {
   position: absolute;
   bottom: 130px;
   left: 0px;
-  background-color: rgb(247, 144, 9);
+  background-color: var(--news-color);
   padding: 5px 8px;
   font-size: 9px;
   font-weight: 500;
@@ -462,7 +470,7 @@ body {
 }
 .addCart {
   position: relative;
-  background: rgba(236, 94, 42, 0.5);
+  background: var(--add-btn-color);
   border-radius: 4px;
   padding: 10px 14px;
   display: flex;
@@ -486,9 +494,7 @@ body {
 }
 
 .swiper-button-next,
-.swiper-button-prev,
-.swiper-button-next2,
-.swiper-button-prev2 {
+.swiper-button-prev {
   width: 50px !important;
   height: 50px !important;
   border-radius: 50%;
@@ -539,4 +545,31 @@ body {
 
 .salePrice {
   color: var(--corp-color);
+}
+
+.mySwiper14 {
+  margin-bottom: 60px;
+}
+
+@media screen and (max-width: 900px) {
+  .swiper-slide {
+    width: 130px !important;
+    height: 100%;
+  }
+  .swiper-wrapper {
+    gap: 12px;
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+
+  .mySwiper_header {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+  }
 }
